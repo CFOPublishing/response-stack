@@ -42,20 +42,60 @@ class ResponseStack {
 			'thread' => 0,
 			'source' => 'false'
 		), $atts ) );
-		
-		$c = '<div class="rs-comments" id="rs-comment-'.$comment.'">';
-			$c
-		$c.= '</div>';
-		
+		?>
+		<div class="rs-comments" id="rs-comment-<?php echo $comment; ?>">
+			<?php $c .= $this->the_rscomment($comment, $thread); ?>
+		</div>
+		<?php 
 	}
 	
-	public static function get_the_rscomment($id, $thread_count, $depth = 0){
-		$count = $depth+1;
-		$c = '<div class="rs-comment" id="rsc-'.$count.'">';
-			$c .=
-		$c .= '</div>';
-		
-		return $c;
+	public static function the_rscomment($id, $thread_depth, $depth_count = 0){
+		$count = $depth_count+1;
+		$comment = get_comment($id);
+		?>
+		<div class="rs-comment rs-depth-<?php $depth_count ?>" id="rsc-<?php echo $count ?>">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+					<div class="author">
+						<?php printf( __( '%s <span class="says">says:</span>', 'cfo' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+					</div>
+				</div><!-- .comment-author -->
+
+				<div class="comment-metadata">
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+						<time datetime="<?php comment_time( 'c' ); ?>">
+							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y'), get_comment_time() ); ?>
+						</time>
+					</a>
+					<?php edit_comment_link( __( 'Edit', 'cfo' ), '<span class="edit-link">', '</span>' ); ?>
+				</div><!-- .comment-metadata -->
+
+				<?php if ( '0' == $comment->comment_approved ) : ?>
+				<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'cfo' ); ?></p>
+				<?php endif; ?>
+			</footer><!-- .comment-meta -->
+
+			<div class="comment-content">
+				<?php comment_text(); ?>
+			</div><!-- .comment-content -->
+
+			<?php
+				comment_reply_link( array_merge( $args, array(
+					'add_below' => 'div-comment',
+					'depth'     => 1,
+					'max_depth' => $args['max_depth'],
+					'before'    => '<div class="reply">',
+					'after'     => '</div>',
+				) ) );
+			?>
+		</div>
+		<?php 
+		if ($thread_depth > $count){
+			?><div class="comment-indent">
+				<?php $this->the_rscomment($next_id, $thread_depth, $depth_count); ?>
+			</div><?php 
+		}
 	}
 
 }
