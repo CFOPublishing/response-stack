@@ -29,7 +29,7 @@ License: GPL2
 class ResponseStack {
 
 	function __construct() {
-		
+		add_shortcode( 'responser', array($this, 'response') );
 	}
 	
 	function includes() {
@@ -44,7 +44,7 @@ class ResponseStack {
 		), $atts ) );
 		?>
 		<div class="rs-comments" id="rs-comment-<?php echo $comment; ?>">
-			<?php $c .= $this->the_rscomment($comment, $thread); ?>
+			<?php $this->the_rscomment($comment, $thread); ?>
 		</div>
 		<?php 
 	}
@@ -52,10 +52,11 @@ class ResponseStack {
 	public static function the_rscomment($id, $thread_depth, $depth_count = 0){
 		$count = $depth_count+1;
 		$comment = get_comment($id);
+		$id = (int)$id;
 		$author_email = $comment->comment_author_email;
 		$author_email = get_avatar( $author_email, 96 );
 		$args = array();
-		$args['avatar_size'] = 96;
+		$args['avatar_size'] = 32;
 		$args['max_depth'] = $thread_depth;
 		
 		?>
@@ -70,8 +71,8 @@ class ResponseStack {
 
 				<div class="comment-metadata">
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-						<time datetime="<?php comment_time( 'c' ); ?>">
-							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  $comment->comment_date ); ?>
+						<time datetime="<?php date('c',  $comment->comment_date ); ?>">
+							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  time($comment->comment_date ))); ?>
 						</time>
 					</a>
 				</div><!-- .comment-metadata -->
@@ -95,7 +96,7 @@ class ResponseStack {
 		<?php 
 		if ($thread_depth > $count){
 			?><div class="comment-indent">
-				<?php $this->the_rscomment($next_id, $thread_depth, $depth_count); ?>
+				<?php self::the_rscomment($next_id, $thread_depth, $depth_count); ?>
 			</div><?php 
 		}
 	}
