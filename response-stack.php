@@ -50,6 +50,7 @@ class ResponseStack {
 	}
 	
 	public static function the_rscomment($id, $thread_depth, $depth_count = 0){
+		global $wpdb;
 		$count = $depth_count+1;
 		$comment = get_comment($id);
 		$id = (int)$id;
@@ -95,9 +96,15 @@ class ResponseStack {
 		</div>
 		<?php 
 		if ($thread_depth > $count){
-			?><div class="comment-indent">
-				<?php self::the_rscomment($next_id, $thread_depth, $depth_count); ?>
-			</div><?php 
+			$children = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_parent = $id");
+			foreach($children as $child_obj){
+				#echo '<pre>';
+				#var_dump($children);
+				#echo '</pre>';
+				?><div class="comment-indent">
+					<?php self::the_rscomment($child_obj->comment_ID, $thread_depth, $depth_count); ?>
+				</div><?php 
+			}
 		}
 	}
 
