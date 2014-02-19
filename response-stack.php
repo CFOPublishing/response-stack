@@ -75,7 +75,7 @@ class ResponseStack {
 
 				<div class="comment-metadata">
 					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-						<time datetime="<?php date('c',  $comment->comment_date ); ?>">
+						<time datetime="<?php date('c',  strtotime($comment->comment_date) ); ?>">
 							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  time($comment->comment_date ))); ?>
 						</time>
 					</a>
