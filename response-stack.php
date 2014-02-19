@@ -30,6 +30,9 @@ class ResponseStack {
 
 	function __construct() {
 		add_shortcode( 'responser', array($this, 'response') );
+		add_action('init', array($this,'register_scripts') );
+		add_action('init', array($this,'register_styles') );
+		add_action('wp_enqueue_scripts', array($this,'enqueue') );
 	}
 	
 	function includes() {
@@ -106,6 +109,18 @@ class ResponseStack {
 				</div><?php 
 			}
 		}
+	}
+	
+	public static function register_scripts(){
+	
+	}
+	
+	public static function register_styles(){
+		wp_register_style('response-stack-css', plugins_url('library/rs-style.css', __FILE__), array(), '1.0', 'all');
+	}
+	
+	public static function enqueue(){
+		wp_enqueue_style('response-stack-css');
 	}
 
 }
