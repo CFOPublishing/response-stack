@@ -7,6 +7,7 @@
 - License: GPL2
 
 	Developed for CFO Magazine
+	
 	Styling and format based on work with Human Made.
 
     This program is free software; you can redistribute it and/or modify
