@@ -103,7 +103,7 @@ class ResponseStack {
 		$o.= '</div>';
 		
 		if ($thread_depth > $count){
-			$children = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_parent = $id");
+			$children = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_parent = $id AND comment_approved = 1");
 			foreach($children as $child_obj){
 				#echo '<pre>';
 				#var_dump($children);
