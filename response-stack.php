@@ -45,11 +45,12 @@ class ResponseStack {
 			'thread' => 0,
 			'source' => 'false'
 		), $atts ) );
-		?>
-		<div class="rs-comments" id="rs-comment-<?php echo $comment; ?>">
-			<?php $this->the_rscomment($comment, $thread); ?>
-		</div>
-		<?php 
+		
+		$o = '<div class="rs-comments" id="rs-comment-' .  $comment; . '">';
+		$o .=	$this->the_rscomment($comment, $thread);
+		$o .= '</div>';
+		return $o;
+		
 	}
 	
 	public static function the_rscomment($id, $thread_depth, $depth_count = 0){
@@ -63,52 +64,55 @@ class ResponseStack {
 		$args['avatar_size'] = 32;
 		$args['max_depth'] = $thread_depth;
 		
-		?>
-		<div class="rs-comment rs-depth-<?php $depth_count ?>" id="rsc-<?php echo $count ?>">
-			<footer class="comment-meta">
-				<div class="comment-author vcard">
-					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-					<div class="author">
-						<?php printf( __( '%s <span class="says">says:</span>', 'cfo' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link($id) ) ); ?>
-					</div>
+		
+		$o = '<div class="rs-comment rs-depth-' . $depth_count .'" id="rsc-' . $count . '">
+				<footer class="comment-meta">
+				<div class="comment-author vcard">';
+					if ( 0 != $args['avatar_size'] ) 
+		$o .= 			get_avatar( $comment, $args['avatar_size'] ); 
+		$o .=		'<div class="author">';
+		$o .=			sprintf( __( '%s <span class="says">says:</span>', 'cfo' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link($id) ) );
+		$o .=		'</div>
 				</div><!-- .comment-author -->
 
 				<div class="comment-metadata">
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-						<time datetime="<?php date('c',  strtotime($comment->comment_date) ); ?>">
-							<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  time($comment->comment_date ))); ?>
-						</time>
+					<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) .'">
+						<time datetime="' . date('c',  strtotime($comment->comment_date) ) . '">'
+							. sprintf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  time($comment->comment_date )))
+						. '</time>
 					</a>
 				</div><!-- .comment-metadata -->
 
 			</footer><!-- .comment-meta -->
 
 			<div class="comment-content">
-				<?php comment_text($id); ?>
-			</div><!-- .comment-content -->
+			';
+		$o .=	get_comment_text($id);
+		$o .= '</div><!-- .comment-content -->';
 
-			<?php
-				comment_reply_link( array_merge( $args, array(
+		$o .=
+				get_comment_reply_link( array_merge( $args, array(
 					'add_below' => 'div-comment',
 					'depth'     => 1,
 					'max_depth' => $args['max_depth'],
 					'before'    => '<div class="reply">',
 					'after'     => '</div>',
 				) ), $id );
-			?>
-		</div>
-		<?php 
+			
+		$o.= '</div>';
+		
 		if ($thread_depth > $count){
 			$children = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_parent = $id");
 			foreach($children as $child_obj){
 				#echo '<pre>';
 				#var_dump($children);
 				#echo '</pre>';
-				?><div class="comment-indent">
-					<?php self::the_rscomment($child_obj->comment_ID, $thread_depth, $depth_count); ?>
-				</div><?php 
+		$o .=	'<div class="comment-indent">';
+		$o .= 		self::the_rscomment($child_obj->comment_ID, $thread_depth, $depth_count);
+		$o .=	'</div>';
 			}
 		}
+		return $o;
 	}
 	
 	public static function register_scripts(){
