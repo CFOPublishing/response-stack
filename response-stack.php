@@ -62,10 +62,10 @@ class ResponseStack {
 		$author_email = get_avatar( $author_email, 96 );
 		$args = array();
 		$args['avatar_size'] = 32;
-		$args['max_depth'] = $thread_depth;
+		$args['max_depth'] = get_option('thread_comments_depth');
 		
 		
-		$o = '<div class="rs-comment rs-depth-' . $depth_count .'" id="rsc-' . $count . '">
+		$o = '<div class="rs-comment rs-depth-' . $count .' " id="rsc-' . $id . '">
 				<footer class="comment-meta">
 				<div class="comment-author vcard">';
 					if ( 0 != $args['avatar_size'] ) 
@@ -78,7 +78,7 @@ class ResponseStack {
 				<div class="comment-metadata">
 					<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) .'">
 						<time datetime="' . date('c',  strtotime($comment->comment_date) ) . '">'
-							. sprintf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), date('H:i:s',  time($comment->comment_date )))
+							. sprintf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), get_comment_date('h:i:s a', $id))
 						. '</time>
 					</a>
 				</div><!-- .comment-metadata -->
@@ -92,7 +92,7 @@ class ResponseStack {
 
 		$o .=
 				get_comment_reply_link( array_merge( $args, array(
-					'add_below' => 'div-comment',
+					'add_below' => 'rsc',
 					'depth'     => 1,
 					'max_depth' => $args['max_depth'],
 					'before'    => '<div class="reply">',
@@ -107,8 +107,8 @@ class ResponseStack {
 				#echo '<pre>';
 				#var_dump($children);
 				#echo '</pre>';
-		$o .=	'<div class="comment-indent">';
-		$o .= 		self::the_rscomment($child_obj->comment_ID, $thread_depth, $depth_count);
+		$o .=	'<div class="rs-comment-children comment-indent">';
+		$o .= 		self::the_rscomment($child_obj->comment_ID, $thread_depth, $count);
 		$o .=	'</div>';
 			}
 		}
@@ -120,7 +120,7 @@ class ResponseStack {
 	}
 	
 	public static function register_styles(){
-		wp_register_style('response-stack-css', plugins_url('library/rs-style.css', __FILE__), array(), '1.0', 'all');
+		wp_register_style('response-stack-css', plugins_url('library/css/rs-style.css', __FILE__), array(), '1.0', 'all');
 	}
 	
 	public static function enqueue(){
