@@ -72,14 +72,14 @@ class ResponseStack {
 					if ( 0 != $args['avatar_size'] ) 
 		$o .= 			get_avatar( $comment, $args['avatar_size'] ); 
 		$o .=		'<div class="author">';
-		$o .=			sprintf( __( '%s <span class="says">says:</span>', 'cfo' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link($id) ) );
+		$o .=			sprintf( __( '%s <span class="says">says:</span>', 'rs' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link($id) ) );
 		$o .=		'</div>
 				</div><!-- .comment-author -->
 
 				<div class="comment-metadata">
 					<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) .'">
 						<time datetime="' . date('c',  strtotime($comment->comment_date) ) . '">'
-							. sprintf( _x( '%1$s at %2$s', '1: date, 2: time', 'cfo' ), get_comment_date('m/d/y', $id), get_comment_date('h:i:s a', $id))
+							. sprintf( _x( '%1$s at %2$s', '1: date, 2: time', 'rs' ), get_comment_date('m/d/y', $id), get_comment_date('h:i:s a', $id))
 						. '</time>
 					</a>
 				</div><!-- .comment-metadata -->
