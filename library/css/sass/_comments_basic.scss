@@ -1,0 +1,141 @@
+/********
+Comments
+********/
+.rs-comments{
+    list-style: none; 
+    margin: 0 0 1em; 
+    padding: 0; 
+    text-indent: 0;
+    font-size: 0.9em;
+    color: #333;
+	background-color: #f2f2f2;
+ 	div{
+ 		&.rs-comment{
+			padding: 1em;
+			ul{
+				list-style: none;
+				margin: 0 0 0 20px;
+			}
+			.comment-meta{
+				@extend %clearfix;
+				border-bottom: solid 1px #ddd;
+				a, a:visited{
+					text-decoration: none;
+					time{
+						color: #333;
+						font-size: 0.8em;
+					}
+				}
+			}
+				.comment-author{
+					float: left;
+					.author{
+						float: left;
+					}
+				}
+				.vcard{
+					.fn{}
+					.url{}
+				}
+					.avatar{ 
+					 	float: left; 
+					 	margin: 0 10px 0 0;
+					}
+					.avatar-32{}
+					.photo{}
+					.says{}
+
+				.comment-metadata{
+					float: right;
+				}
+			
+			.comment-content{
+				clear: both;
+				padding: 1em;
+			}
+			.reply{
+				a{
+					text-decoration: none;
+				}
+			}
+ 		} // end li.comment
+		&.rs-comment-children{
+			text-indent:0;
+			div {
+				&.alt{}
+				&.bypostauthor{}
+				&.byuser{}
+				&.comment{}
+				&.comment-author-admin{}
+				&.rs-depth-2{
+					border-left: 2px solid #ccc;
+					margin: 0 0 10px 10px;
+				}
+				&.rs-depth-3{
+					border-left: 2px solid #bbb;
+					margin: 0 0 10px 10px;
+				}
+				&.rs-depth-4{
+					border-left: 2px solid #aaa;
+					margin: 0 0 10px 10px;
+				}
+				&.rs-depth-5{}
+				&.even{}
+				&.odd{}
+			}
+		}  // end .children
+ 		&.alt{}
+ 		&.bypostauthor{
+ 			border-left: solid 2px black !important;
+ 		}
+ 		&.byuser{}
+ 		&.comment-author-admin{}
+ 		&.even{
+ 			background: #fff;
+ 		}
+		&.odd{
+			background: #f6f6f6;
+		}
+		&.parent{
+			border-left: 2px solid #ddd;
+		}
+		&.thread-alt{}
+		&.thread-even{}
+		&.thread-odd{}
+ 	} // end .comment-list li
+
+	.comment-respond{
+		background-color: #f7f7f7;
+		.comment-reply-title{
+			background-color: #eee;
+			margin: 0;
+			padding: 0.25em 1em;
+			border-bottom: solid 1px #ddd;
+			color: #444;
+		}
+		.comment-form{
+			padding: 0 1em 1em;
+			@extend %clearfix;
+			.comment-notes{
+				font-style: italic;
+				color: #444;
+				font-size: 0.8em;
+			}
+			label{
+				color: #545454;
+				@include inline-block;
+				width: 100px;
+			}
+			input[type="submit"]{
+				@extend %button;
+				border: none;
+			}
+			p{
+				margin: 1em 0;
+			}
+			.comment-form-comment{
+				margin-bottom: 0;
+			}
+		}
+	}
+} // end .comment-list
