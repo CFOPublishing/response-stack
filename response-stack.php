@@ -46,7 +46,7 @@ class ResponseStack {
 			'source' => 'false'
 		), $atts ) );
 		
-		$o = '<div class="rs-comments" id="rs-comment-' .  $comment; . '">';
+		$o = '<div class="rs-comments" id="rs-comment-' .  $comment . '">';
 		$o .=	$this->the_rscomment($comment, $thread);
 		$o .= '</div>';
 		return $o;
