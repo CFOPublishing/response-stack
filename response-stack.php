@@ -88,7 +88,7 @@ class ResponseStack {
 
 			<div class="comment-content">
 			';
-		$o .=	get_comment_text($id);
+		$o .=	wpautop(get_comment_text($id), true);
 		$o .= '</div><!-- .comment-content -->';
 
 		$o .=
