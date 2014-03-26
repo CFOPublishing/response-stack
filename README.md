@@ -1,7 +1,7 @@
 ## Plugin Name: Response Stack
 - Plugin URI: http://cfo.com
 - Description: Response stack is a WordPress plugin built to bring audience response into stories. In its current form, this is done by using shortcodes to build comment chains in the body of a post. Authors can use threaded comments and even pull comments from multiple other stories, based on the comment ID. 
-- Version: 0.0.1
+- Version: 1.0.0
 - Author: Aram Zucker-Scharff
 - Author URI: http://aramzs.me
 - License: GPL2
