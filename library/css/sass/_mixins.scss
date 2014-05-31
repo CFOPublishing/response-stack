@@ -1,0 +1,50 @@
+/**
+	Mixins
+*/
+
+/*********
+COLORS
+*********/
+$red: 			#b22d25;
+$yellow:		#fdd742;
+$green:			#accf5b;
+$tan:			#d1c99d;
+
+$light-gray: 	#dbdbdb;
+$mid-gray:		#929292;		
+$dark-gray: 	#2b2b2b;
+$darkest-gray: 	#333;
+
+$link-color:	#004073;
+$link-hover: 	#B22D25;
+
+// Contain floats: nicolasgallagher.com/micro-clearfix-hack/
+%clearfix {
+  zoom: 1;
+	&:before, &:after { content: ""; display: table; }
+	&:after { clear: both; }
+}
+
+@mixin inline-block() {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.button, .button:visited, %button {
+	@include inline-block;
+	background-color: $link-color;
+	border: 1px solid darken($link-color, 13%);
+	border-radius: 3px;
+	padding: 5px 10px;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+	text-shadow: none;
+	&:hover, &:focus {
+		color: #fff;
+	 	background-color: lighten($link-color,10%);
+	}
+	&:active {
+		background-color: darken($link-color,5%);
+	}
+}
