@@ -1,4 +1,4 @@
-=== Plugin Name: Response Stack ===
+=== Response Stack ===
 Plugin URI: http://cfo.com
 Version: 1.0.0
 Contributors: AramZS
