@@ -1,6 +1,8 @@
 === Plugin Name: Response Stack ===
 Plugin URI: http://cfo.com
 Version: 1.0.0
+Contributors: aramzs
+Donate link: 
 Author: Aram Zucker-Scharff
 Author URI: http://aramzs.me
 Tags: comments, embed, community, shortcode
@@ -10,11 +12,11 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Response stack is a WordPress plugin built to bring audience response into stories. In its current form, this is done by using shortcodes to build comment chains in the body of a post. Authors can use threaded comments and even pull comments from multiple other stories, based on the comment ID. 
+Response stack engages with your community by bringing audience comments into your posts.
 
 == Description ==
 
-Response Stack uses WordPress shortcodes to pull comments (and comment threads) into a post from other posts on the same site. To get the shortcode working type the following into its own line in your post:
+Response Stack uses WordPress shortcodes to pull comments (and comment threads) into a post from other posts on the same site. Authors can use threaded comments and even pull comments from multiple other stories, based on the comment ID. To get the shortcode working type the following into its own line in your post:
 
 `[responser comment="id" thread="depth"]` where `id` is equal to the integer ID of the comment and `depth` is equal to the integer depth of the thread of comments you want visible. 
 
@@ -41,4 +43,3 @@ Styling and format based on work with Human Made.
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
