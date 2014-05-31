@@ -1,7 +1,7 @@
 === Plugin Name: Response Stack ===
 Plugin URI: http://cfo.com
 Version: 1.0.0
-Contributors: aramzs
+Contributors: AramZS
 Donate link: 
 Author: Aram Zucker-Scharff
 Author URI: http://aramzs.me
