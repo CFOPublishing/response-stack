@@ -30,7 +30,7 @@ $link-hover: 	#B22D25;
 	vertical-align: middle;
 }
 
-.rs-button, .rs-button:visited, %button {
+%button, %button:visited {
 	@include inline-block;
 	background-color: $link-color;
 	border: 1px solid darken($link-color, 13%);
