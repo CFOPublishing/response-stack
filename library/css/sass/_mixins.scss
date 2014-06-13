@@ -11,7 +11,7 @@ $green:			#accf5b;
 $tan:			#d1c99d;
 
 $light-gray: 	#dbdbdb;
-$mid-gray:		#929292;		
+$mid-gray:		#929292;
 $dark-gray: 	#2b2b2b;
 $darkest-gray: 	#333;
 
@@ -30,7 +30,7 @@ $link-hover: 	#B22D25;
 	vertical-align: middle;
 }
 
-.button, .button:visited, %button {
+%button, %button:visited {
 	@include inline-block;
 	background-color: $link-color;
 	border: 1px solid darken($link-color, 13%);

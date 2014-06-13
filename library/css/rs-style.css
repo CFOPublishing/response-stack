@@ -12,7 +12,7 @@ COLORS
   .rs-comments div.rs-comment .comment-meta:after, .rs-comments .comment-respond .comment-form:after {
     clear: both; }
 
-.button, .button:visited, .rs-comments .comment-respond .comment-form input[type="submit"] {
+.rs-comments .comment-respond .comment-form input[type="submit"], .rs-comments .comment-respond .comment-form input[type="submit"]:visited {
   display: inline-block;
   vertical-align: middle;
   background-color: #004073;
@@ -23,10 +23,10 @@ COLORS
   text-decoration: none;
   cursor: pointer;
   text-shadow: none; }
-  .button:hover, .button:focus, .button:visited:hover, .button:visited:focus, .rs-comments .comment-respond .comment-form input[type="submit"]:hover, .rs-comments .comment-respond .comment-form input[type="submit"]:focus {
+  .rs-comments .comment-respond .comment-form input[type="submit"]:hover, .rs-comments .comment-respond .comment-form input[type="submit"]:focus, .rs-comments .comment-respond .comment-form input[type="submit"]:visited:hover, .rs-comments .comment-respond .comment-form input[type="submit"]:visited:focus {
     color: #fff;
     background-color: #005ca6; }
-  .button:active, .button:visited:active, .rs-comments .comment-respond .comment-form input[type="submit"]:active {
+  .rs-comments .comment-respond .comment-form input[type="submit"]:active, .rs-comments .comment-respond .comment-form input[type="submit"]:visited:active {
     background-color: #00325a; }
 
 /********
