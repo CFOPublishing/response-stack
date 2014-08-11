@@ -5,7 +5,7 @@ Plugin Name: Response Stack
 Plugin URI: http://cfo.com/
 Description: This plugin allows users to build posts around user comments in WordPress.
 Version: 1.0.0
-Author: Aram Zucker-Scharff
+Author: Aram Zucker-Scharff, CFO Publishing
 Author URI: http://aramzs.me
 License: GPL2
 */
